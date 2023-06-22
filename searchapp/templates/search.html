@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Items</title>
+    <style>
+    form{
+    display: flex;
+    justify-content: center;
+    }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Search Dishes</h1>
+    <form method="GET">
+        <input type="text" name="query" value="{{ query }}">
+        <button type="submit">Search</button>
+    </form>
+    <h2>Results:</h2>
+    <ol style="display: flex;flex-wrap: wrap;justify-content: space-between;">
+        {% for item in items %}
+            <li style="margin: 10px;  padding: 20px;border: solid;">
+                <h3>{{ item.name }}</h3>
+                <p>Price: {{ item.prize }}</p>
+                <p>Restaurant: {{ item.restaurant.name }}</p>
+                <p>Aggregate Rating: {{ item.restaurant.aggregate_rating }}</p>
+            </li>
+        {% empty %}
+            <li>No items found.</li>
+        {% endfor %}
+    </ol>
+</body>
+</html>
